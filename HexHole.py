@@ -2,7 +2,7 @@
 """Calculate and visualize parameters for dilled hex holes"""
 
 __author__ = "John Sheehan"
-__email__ = "jennasys@yahoo.com"
+__email__ = "jennasysen@gmail.com"
 __version__ = "1.1.1"
 __date__ = "Mar-12-2013"
 
