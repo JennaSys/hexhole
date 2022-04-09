@@ -403,7 +403,7 @@ class HexDisplay:
             status_rect.top = self.y_screen - self.border
             self.screen.blit(status_text, status_rect)
             logging.warning(self.hexhole.status)
-            # print self.hexhole.status
+            # print(self.hexhole.status)
 
 
 

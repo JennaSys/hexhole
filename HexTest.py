@@ -29,12 +29,12 @@ large_segment_area = (((2 * intersecting_angle_large) - math.sin(2 * intersectin
 intersecting_angle_small = math.asin((intersecting_chord/2) / drill_radius)
 small_segment_area = (((2 * intersecting_angle_small) - math.sin(2 * intersecting_angle_small)) * (drill_radius**2)) / 2
 
-print "intersecting_angle_large=", math.degrees(intersecting_angle_large)
-print "intersecting_chord=", intersecting_chord
-print "large_segment_area=", large_segment_area
-print "intersecting_angle_small=", math.degrees(intersecting_angle_small)
-print "small_segment_area=", small_segment_area
-print
+print("intersecting_angle_large=", math.degrees(intersecting_angle_large))
+print("intersecting_chord=", intersecting_chord)
+print("large_segment_area=", large_segment_area)
+print("intersecting_angle_small=", math.degrees(intersecting_angle_small))
+print("small_segment_area=", small_segment_area)
+print()
 
 # calc included hex triangle: ab/2 * 2
 # subtract 60deg large segment: (pi r^2)/6
@@ -46,29 +46,29 @@ drill_area = ((center_to_flat**2) * math.pi) / corners
 corner_area = small_segment_area - large_segment_area - overdrill_area
 underdrill_area = hex_area - drill_area - corner_area
 
-print "hex_area=", hex_area
-print "drill_area=", drill_area
-print "corner_area=", corner_area
-print "underdrill_area=", underdrill_area
-print
+print("hex_area=", hex_area)
+print("drill_area=", drill_area)
+print("corner_area=", corner_area)
+print("underdrill_area=", underdrill_area)
+print()
 
 
-print "Hex Size: {:.4f}".format(hex_size)
-print "Center to Flat: {:.4f}".format(center_to_flat)
-print "Center to Corner: {:.4f}".format(center_to_corner)
-print "Corner to Corner: {:.4f}".format(center_to_corner * 2)
-print "Flat Length: {:.4f}".format(flat_length)
-print
-print "Center Drill Size: {:.3f}".format(hex_size)
-print "Corner Drill Size: {:.3f}".format(drill_size)
-print
+print("Hex Size: {:.4f}".format(hex_size))
+print("Center to Flat: {:.4f}".format(center_to_flat))
+print("Center to Corner: {:.4f}".format(center_to_corner))
+print("Corner to Corner: {:.4f}".format(center_to_corner * 2))
+print("Flat Length: {:.4f}".format(flat_length))
+print()
+print("Center Drill Size: {:.3f}".format(hex_size))
+print("Corner Drill Size: {:.3f}".format(drill_size))
+print()
 
 for corner in range(corners):
     x_offset = center_to_drill * math.cos(math.radians(corner * side_angle))
     y_offset = center_to_drill * math.sin(math.radians(corner * side_angle))
-    print "Corner {0}: X={1:.4f}  Y={2:.4f}".format(corner + 1, x_offset, y_offset)
+    print("Corner {0}: X={1:.4f}  Y={2:.4f}".format(corner + 1, x_offset, y_offset))
 
-print
-print "Over drill area: ", overdrill_area
-print "Under drill area: ", underdrill_area
+print()
+print("Over drill area: ", overdrill_area)
+print("Under drill area: ", underdrill_area)
 

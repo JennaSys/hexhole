@@ -60,6 +60,6 @@ if __name__=="__main__":
     while num != 0:
         num = input("Enter number:")
         if num != 0:
-            print getFraction(num, 64)
+            print(getFraction(num, 64))
 
 
