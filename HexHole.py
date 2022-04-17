@@ -242,7 +242,7 @@ class HexHole:
                     finally:
                         input_text = ""
                 else:
-                    input_text += event.unicode.encode("ascii")
+                    input_text += event.unicode
 
                 hex_display.draw(mask_on, input_text)
                 self.status = ""
