@@ -7,7 +7,6 @@ __version__ = "1.1.1"
 __date__ = "Mar-12-2013"
 
 
-import math
 import pygame
 import logging
 import math
