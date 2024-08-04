@@ -9,23 +9,22 @@ __date__ = "Mar-06-2013"
 
 import pygame
 
-def getFraction(value, denominator):
-    whole_num = int(value)
-    remainder = value - int(value)
 
-    numerator = int(((remainder * denominator) + 0.5) * 10) / 10
+def getFraction(value, denominator):
+    whole_num, remainder = divmod(value, 1)
+
+    numerator = round(remainder * denominator)
 
     while numerator % 2 == 0 and numerator != 0:
         numerator = numerator / 2
         denominator = denominator / 2
 
     if numerator == 0:
-        return "{0}".format(whole_num)
+        return f"{whole_num:0.0f}"
     elif whole_num != 0:
-        return "{0}-{1}/{2}".format(whole_num, numerator, denominator)
+        return f"{whole_num:0.0f}-{numerator:0.0f}/{denominator:0.0f}"
     else:
-        return "{0}/{1}".format(numerator, denominator)
-
+        return f"{numerator:0.0f}/{denominator:0.0f}"
 
 
 def inputbox(screen, label, value, pos, size, bg_color, fg_color):
@@ -60,6 +59,6 @@ if __name__=="__main__":
     while num != 0:
         num = input("Enter number:")
         if num != 0:
-            print(getFraction(num, 64))
+            print(getFraction(float(num), 64))
 
 

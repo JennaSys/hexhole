@@ -30,7 +30,7 @@ class HexHole:
     def __init__(self, hex_size, hole_size, hole2_size=0.0):
         self.hex_size = hex_size
         self.drill_size = hole_size
-        self.drill2_size = max(0,hole2_size)
+        self.drill2_size = max(0.0, hole2_size)
         self.center_to_flat = self.hex_size / 2
         self.center_to_corner = self.center_to_flat / math.cos(math.radians(self.side_angle / 2))
         self.corner_to_corner = self.center_to_corner * 2
@@ -43,8 +43,10 @@ class HexHole:
                 self.status = "Drill size {0:.4f} is too small and will be set to the minimum allowed: {1:.4f}".format(self.drill_size, self.center_to_corner - self.center_to_flat + 0.0001)
             self.drill_size = self.center_to_corner - self.center_to_flat + 0.0001
         elif self.drill_size >= self.center_to_corner:
-            self.status = "Drill size {0:.4f} is too large and will be set to the maximum allowed: {1:.4f}".format(self.drill_size, self.center_to_corner - 0.0001)
-            self.drill_size = self.center_to_corner - 0.0001
+            denominator = int(1 / HexHole.drill_increment)
+            new_size = int((self.center_to_corner - 0.0001) * denominator) / denominator
+            self.status = "Drill size {0:.4f} is too large and will be set to the maximum allowed: {1:.4f}".format(self.drill_size, new_size)
+            self.drill_size = new_size
 
         self.drill_radius = self.drill_size / 2
         self.drill2_radius = self.drill2_size / 2
@@ -274,7 +276,7 @@ class HexDisplay:
         self.border = int(self.x_screen * 0.025)
         self.x_center = int(self.x_screen / 2)
         self.y_center = int(self.y_screen / 2)
-        self.scale_factor = (self.y_screen / self.hexhole.corner_to_corner) / 1.1
+        self.scale_factor = (self.y_screen / self.hexhole.corner_to_corner) / 1.2
         self.center_mark = int(self.x_screen * 0.015)
 
         self.background = pygame.Surface(screen.get_size())
