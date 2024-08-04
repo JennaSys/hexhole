@@ -10,6 +10,7 @@ __date__ = "Mar-12-2013"
 import math
 import pygame
 import logging
+import math
 
 import Util
 
@@ -39,9 +40,16 @@ class HexHole:
         self.status = ""
 
         if self.center_to_corner - self.center_to_flat >= self.drill_size:
+            denominator = int(1 / HexHole.drill_increment)
+            new_size = max(math.ceil((self.center_to_corner - self.center_to_flat + 0.0001) * denominator) / denominator, self.drill_increment)
+            # new_size = max(self.center_to_corner - self.center_to_flat + 0.0001, self.drill_increment)
             if self.drill_size > 0.0:  # Assume starting point for best fit algorithm
-                self.status = "Drill size {0:.4f} is too small and will be set to the minimum allowed: {1:.4f}".format(self.drill_size, self.center_to_corner - self.center_to_flat + 0.0001)
-            self.drill_size = self.center_to_corner - self.center_to_flat + 0.0001
+                self.status = "Drill size {0:.4f} is too small and will be set to the minimum allowed: {1:.4f}".format(self.drill_size, new_size)
+            self.drill_size = new_size
+
+            # if self.drill_size > 0.0:  # Assume starting point for best fit algorithm
+            #     self.status = "Drill size {0:.4f} is too small and will be set to the minimum allowed: {1:.4f}".format(self.drill_size, self.center_to_corner - self.center_to_flat + 0.0001)
+            # self.drill_size = self.center_to_corner - self.center_to_flat + 0.0001
         elif self.drill_size >= self.center_to_corner:
             denominator = int(1 / HexHole.drill_increment)
             new_size = int((self.center_to_corner - 0.0001) * denominator) / denominator
